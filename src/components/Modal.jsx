@@ -42,12 +42,12 @@ function Modal() {
               닫기와 확인 버튼 2개가 있고, 외부 영역을 눌러도 모달이 닫히지
               않아요.
             </p>
-            <Btnitem>
+            <BtnItem>
               <NegativeButton size="small" onClick={PrimaryCloseModal}>
                 닫기
               </NegativeButton>
               <PrimaryButton size="small">확인</PrimaryButton>
-            </Btnitem>
+            </BtnItem>
           </ModalContent>
         </ModalContainer>
       )}
@@ -58,7 +58,6 @@ function Modal() {
             <p>닫기 버튼 1개가 있고, 외부 영역을 누르면 모달이 닫혀요.</p>
               <CircleBtn onClick={NegativeCloseModal}>X</CircleBtn>
           </ModalContent>
-          //{" "}
         </ModalContainer>
       )}
     </>
@@ -76,6 +75,7 @@ const ModalContainer = styled.div`
   top: 0;
   left: 0;
   background-color: rgba(221, 221, 221, 0.8);
+  z-index: 99;
 `;
 
 // 모달 내용 스타일
@@ -99,15 +99,14 @@ const ModalContent = styled.div`
       width: 300px;
       height: 170px;
       `
+    default:
   }
-
 }
   }
-
 `;
 
 // 버튼 정렬
-const Btnitem = styled.div`
+const BtnItem = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 200px;

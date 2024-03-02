@@ -49,7 +49,7 @@ export const PrimaryButton = styled.button`
   }
 
   ${({ size }) => {
-    switch (size) {
+    switch(size) {
       case "medium":
         return css`
           width: 120px;
@@ -70,6 +70,7 @@ export const PrimaryButton = styled.button`
             background-color: rgb(51, 160, 129);
           }
         `;
+        default:
     }
   }}
 `;
@@ -111,6 +112,7 @@ export const NegativeButton = styled.button`
             background-color: rgb(192, 134, 121);
           }
         `;
+        default:
     }
   }}
 `;

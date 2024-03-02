@@ -2,50 +2,96 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 function Select() {
-  const [showOptions, setShowOptions] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
+  const [showOptions1, setShowOptions1] = useState(false);
+  const [selectedOption1, setSelectedOption1] = useState("");
 
-  const toggleOptions = () => {
-    setShowOptions(!showOptions);
+  const [showOptions2, setShowOptions2] = useState(false);
+  const [selectedOption2, setSelectedOption2] = useState("");
+
+  const options = ["리액트", "자바", "스프링", "리액트네이티브"];
+
+  const toggleOptions1 = () => {
+    setShowOptions1(!showOptions1);
   };
 
-  const handleOptionClick = (value) => {
-    setSelectedOption(value);
-    setShowOptions(false);
+  const toggleOptions2 = () => {
+    setShowOptions2(!showOptions2);
+  };
+
+  const handleOptionClick1 = (value) => {
+    setSelectedOption1(value);
+    setShowOptions1(false);
+  };
+
+  const handleOptionClick2 = (value) => {
+    setSelectedOption2(value);
+    setShowOptions2(false);
   };
 
   return (
+    <>
     <SelectBox>
       <h1>Select</h1>
-      <LabelContainer onClick={toggleOptions}>
-        <Label>
-          <div>{selectedOption || "리액트"}</div>
-          <div>▼</div>
-        </Label>
-      </LabelContainer>
-      {showOptions && (
-        <SelectOptions>
-          <Option onClick={() => handleOptionClick("리액트")}>리액트</Option>
-          <Option onClick={() => handleOptionClick("자바")}>자바</Option>
-          <Option onClick={() => handleOptionClick("스프링")}>스프링</Option>
-          <Option onClick={() => handleOptionClick("리액트네이티브")}>
-            리액트네이티브
-          </Option>
-        </SelectOptions>
-      )}
+      <In>
+        <div>
+        <LabelContainer onClick={toggleOptions1} onBlur={()=>setShowOptions1(false)} tabIndex={0}>
+          <Label>
+            <div>{selectedOption1 || "리액트"}</div>
+            <div>▼</div>
+          </Label>
+        </LabelContainer>
+        {showOptions1 && (
+          <SelectOptions className="outOption">
+            {options.map((option, index) => (
+              <Option key={index} onMouseDown={() => handleOptionClick1(option)} >
+                {option}
+              </Option>
+            ))}
+          </SelectOptions>
+        )}
+        </div>
+        <div>
+        <LabelContainer onClick={toggleOptions2} onBlur={()=>setShowOptions2(false)} tabIndex={0}>
+          <Label>
+            <div>{selectedOption2 || "리액트"}</div>
+            <div>▼</div>
+          </Label>
+        </LabelContainer>
+        {showOptions2 && (
+          <SelectOptions >
+            {options.map((option, index) => (
+              <Option key={index} onMouseDown={() => handleOptionClick2(option)}>
+                {option}
+              </Option>
+            ))}
+          </SelectOptions>
+        )}
+        </div>
+      </In>
     </SelectBox>
+    </>
   );
 }
 
 const SelectBox = styled.div`
-  border: 3px solid rgb(221, 221, 221);
-  height: 200px;
   margin-top: 50px;
+  position: relative;
 `;
 
+const In = styled.div`
+  height: 100px;
+  padding: 20px 30px;
+  display: flex;
+  gap: 30px;
+  overflow: hidden;
+  border: 3px solid rgb(221, 221, 221);
+  .outOption {
+    position: absolute;
+  }
+`;
 const LabelContainer = styled.div`
   display: flex;
-  position: relative;
+  margin-top: 10px;
 `;
 
 const Label = styled.div`
@@ -58,8 +104,6 @@ const Label = styled.div`
   padding: 0 30px;
   border: 1px solid rgb(221, 221, 221);
   border-radius: 15px;
-  margin-left: 40px;
-  position: relative;
   cursor: pointer;
 `;
 
@@ -67,8 +111,6 @@ const SelectOptions = styled.div`
   list-style: none;
   width: 280px;
   display: block;
-  position: absolute;
-  left: 55px;
 `;
 
 const Option = styled.div`
@@ -78,7 +120,7 @@ const Option = styled.div`
   height: 40px;
   border-radius: 10px;
   background-color: #ffffff;
-  z-index: 99;
+  z-index: 9;
   &:hover {
     background-color: #eee;
   }

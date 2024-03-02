@@ -8,17 +8,17 @@ function Input() {
 
   const onClickSave = () => {
     if (nameValue || priceValue) {
-      window.alert(`name: ${nameValue || ''}, price: ${priceValue || ''}`);
+      window.alert(`name: ${nameValue || ''}, price: ${priceValue || ''}`.replaceAll(",",""));
     } else
       window.alert("이름과 가격을 모두 입력하세요!");
     
   };
 
-  const savename = event => {
+  const saveName = event => {
     setName(event.target.value)
   };
 
-  const saveprice = event => {
+  const savePrice = event => {
     const numberCheck = event.target.value;
     const format = numberCheck.replace(/[^0-9]/g,'').replace(/\B(?=(\d{3})+(?!\d))/g, ',')
     setPrice(format);
@@ -30,11 +30,11 @@ function Input() {
       <Container>
         <div>
           이름
-          <MyInput type="text" value={nameValue} onChange={savename} />
+          <MyInput type="text" value={nameValue} onChange={saveName} />
         </div>
         <div>
           가격
-          <MyInput type="text" value={priceValue} onChange={saveprice} />
+          <MyInput type="text" value={priceValue} onChange={savePrice} />
         </div>
         <PrimaryButton size="small" onClick={onClickSave}>저장</PrimaryButton>
       </Container>
